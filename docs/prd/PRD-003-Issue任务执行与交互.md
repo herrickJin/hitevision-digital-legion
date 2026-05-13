@@ -5,7 +5,7 @@
 - 文档编号：PRD-003
 - 文档名称：Issue任务执行与交互
 - 所属项目：鸿合-数字军团OS
-- 当前版本：v1.0 Final
+- 当前版本：v1.1
 - 文档状态：Final Draft
 - 作者：高级产品经理
 - 创建日期：2026-05-13
@@ -322,7 +322,44 @@ PRD-001 解决了数字员工怎么生产，PRD-002 解决了数字员工怎么�
 - 所有状态变化都要有时间戳和原因。
 - 用户能区分失败、越界、待确认、已转交、重试中。
 
-### 11.3 执行过程展示
+### 11.3 实例状态联动
+
+Issue 的执行依赖 PRD-002 中数字员工实例的运行状态。当实例状态变更时，Issue 自动触发对应流转。
+
+#### 联动规则
+
+| 实例状态变更（PRD-002） | 对正在执行 Issue 的影响 | 对新 Issue 创建 |
+|------------------------|----------------------|----------------|
+| 运行中（正常） | 无影响 | 允许创建 |
+| 已停止 | 正在执行 Issue 暂停，状态进入 `waiting_for_input`，原因标记「实例已停止」 | 禁止创建 |
+| 更新中 | 正在执行 Issue 暂停，更新完成后自动恢复 | 禁止创建 |
+| 更新失败（回滚后） | 恢复执行 | 允许创建 |
+| 原型已归档（Soul 回收中） | 所有进行中 Issue 进入 `failed`，原因标记「实例 Soul 已回收」 | 禁止创建 |
+
+#### 恢复规则
+
+- 实例从「已停止」恢复为「运行中」时，暂停的 Issue 自动恢复为 `running`。
+- 实例从「更新中」完成更新后，暂停的 Issue 自动恢复为 `running`。
+- 实例进入「原型已归档」后不可恢复，关联 Issue 终态不可逆。
+
+#### 新增流转
+
+- `running -> waiting_for_input`（原因：instance_paused）
+- `waiting_for_input -> running`（原因：instance_resumed，自动触发）
+- `running -> failed`（原因：instance_soul_recycled，不可逆）
+
+### 11.4 Issue 超时规则
+
+| 场景 | 超时阈值 | 超时后处理 |
+|------|---------|-----------|
+| 执行中无事件产出 | 30 分钟 | 状态进入 `failed`，原因 `execution_timeout` |
+| 等待补充信息无响应 | 72 小时 | 状态进入 `cancelled`，原因 `input_timeout` |
+| 待人工确认转交无响应 | 7 天 | 状态保持不变，系统发送催办通知 |
+| 草稿未提交 | 30 天 | 自动清理，进入 `cancelled` |
+
+[假设] 内部使用阶段 30 分钟无事件产出通常意味着 Agent 执行异常。信心度：7/10。验证方式：上线后跟踪 execution_timeout 事件占比，如 > 5% 需要重新评估阈值。
+
+### 11.5 执行过程展示
 
 对用户可见的信息包括：
 
@@ -337,15 +374,26 @@ PRD-001 解决了数字员工怎么生产，PRD-002 解决了数字员工怎么�
 - 高权限角色可查看更多工具调用细节。
 - 不直接把底层噪声日志暴露给所有人。
 
-### 11.4 最终结果交付
+### 11.6 最终结果交付
 
-最终结果必须支持标准模板输出，至少支持：
+最终结果必须支持标准模板输出，采用「内置类型 + 可扩展自定义类型」机制。
 
-- PRD
-- 报告
-- 清单
+#### 内置模板类型
 
-结果内容包括：
+| 模板类型 | 说明 | 典型场景 |
+|---------|------|---------|
+| PRD | 产品需求文档 | 产品规划任务 |
+| 报告 | 分析/调研报告 | 调研、竞品分析 |
+| 清单 | 检查/待办清单 | 评审、部署前检查 |
+| 代码 | 代码片段/文件 | 开发任务 |
+| 数据查询结果 | 结构化数据 | 查询、统计任务 |
+| 方案对比 | 多方案对比表 | 决策支持任务 |
+
+#### 自定义模板类型
+
+Soul 原型在 PRD-001 能力配置时可定义专属输出模板，PRD-003 在结果交付时按原型配置渲染。自定义模板需包含：模板名称、字段定义、渲染格式。
+
+#### 结果内容包括：
 
 - 标准模板正文
 - 摘要
@@ -376,15 +424,24 @@ PRD-001 解决了数字员工怎么生产，PRD-002 解决了数字员工怎么�
 
 禁止系统自动直接转交。
 
-### 11.7 后续动作
+### 11.9 追问链机制
 
-系统至少支持：
+用户在已完成 Issue 上继续追问时，系统不回退 `completed` 状态，而是创建新 Issue 形成追问链。
 
-- 继续追问
-- 取消任务
-- 发起重试
-- 确认转交
-- 基于结果发起新任务
+规则：
+
+- 用户在 `completed` 的 Issue 上追问，系统自动创建新 Issue，标记 `parent_issue_id`。
+- 新 Issue 自动继承原 Issue 的 `agent_instance_id` 和 `context_notes`。
+- 原 Issue 状态保持 `completed` 不变，关系标记为 `followed_by`。
+- 追问链深度不限，但单链超过 5 个 Issue 时系统提示建议发起新的独立任务。
+
+### 11.10 重试限制
+
+`failed -> retrying -> running -> failed` 循环最多 3 次。
+
+- 重试次数记录在 `TaskIssue.retry_count` 字段。
+- 第 3 次失败后，状态保持 `failed` 且不再允许重试。
+- 系统提示用户：补充信息、更换任务描述或联系平台管理员。
 
 ---
 
@@ -417,6 +474,9 @@ PRD-001 解决了数字员工怎么生产，PRD-002 解决了数字员工怎么�
 - `latest_blocker_id`
 - `recommended_transfer_instance_ids`
 - `human_decision_status`
+- `parent_issue_id`（追问链：指向父 Issue，null 表示原始任务）
+- `retry_count`（重试次数：默认 0，最大 3）
+- `pause_reason`（暂停原因：instance_paused / instance_updating / null）
 
 ### 12.3 structured_brief
 
@@ -451,18 +511,22 @@ PRD-001 解决了数字员工怎么生产，PRD-002 解决了数字员工怎么�
 - `waiting_for_input -> running`
 - `running -> completed`
 - `running -> failed`
-- `failed -> retrying`
+- `failed -> retrying`（最多 3 次，见 11.10）
 - `retrying -> running`
 - `running -> rejected_out_of_scope`
 - `rejected_out_of_scope -> waiting_human_transfer_decision`
 - `waiting_human_transfer_decision -> reassigned`
 - `pending/running/waiting_for_input/retrying -> cancelled`
+- `running -> waiting_for_input`（原因：instance_paused，见 11.3）
+- `waiting_for_input -> running`（原因：instance_resumed，自动触发）
+- `running -> failed`（原因：instance_soul_recycled / execution_timeout，不可逆）
 
 原则：
 
-- 完成态不能回退为执行中。
+- 完成态不能回退为执行中。追问走追问链，见 11.9。
 - 越界后不能由系统自动继续执行。
 - 已转交代表人类已做出明确转交决定。
+- 重试上限 3 次，超出后终态不可逆。
 
 ---
 
