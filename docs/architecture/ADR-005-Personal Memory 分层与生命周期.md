@@ -37,7 +37,8 @@ PersonalMemory {
 ### Phase 1 简化
 
 - 数据模型上预留 project_id 字段，区分通用和项目级
-- Phase 1 可以先只实现通用偏好层，项目特定偏好作为可选扩展
+- Phase 1 实际交付仅落地通用偏好层
+- 项目特定偏好只保留数据模型和接口预留，不作为 Phase 1 必交付能力
 - 不影响 Personal Memory 不参与 RAG 检索的决策（ADR-008）
 
 ## 被拒绝的替代方案
@@ -59,7 +60,7 @@ PersonalMemory {
 ### 负面
 
 - 增加 Personal Memory 的数据模型复杂度（需要 project_id 区分）
-- Phase 1 需要明确哪些偏好属于通用、哪些属于项目级
+- 后续引入项目特定偏好时，仍需明确哪些偏好属于通用、哪些属于项目级
 
 ## 复审条件
 

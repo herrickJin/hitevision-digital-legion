@@ -1,51 +1,65 @@
 <claude-mem-context>
 # Memory Context
 
-# [hitevision-digital-legion] recent context, 2026-05-15 2:48am GMT+8
+# [hitevision-digital-legion] recent context, 2026-05-15 3:46pm GMT+8
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 37 obs (8,189t read) | 0t work
+Stats: 50 obs (11,228t read) | 0t work
 
-### May 13, 2026
-9 10:45a 🔵 PRD-002 文档为空文件
-10 " 🔵 PRD-001 深度分析完成
-21 5:47p 🟣 PPT内容生成方案设计
 ### May 14, 2026
-33 4:42p ✅ Product Manager Skill Available in Skills Registry
-34 4:43p 🔵 Gemini CLI Skills System Architecture
-35 " 🔵 Product Manager Agent Prototype Exists in Project PRDs
-36 " 🔵 Workspace Skills Directory Not Initialized
-37 4:45p ✅ 用户请求安装产品经理相关skill
-38 4:46p 🟣 安装了完整的数字军团技能集
-39 4:51p 🟣 启动了PRD合规性审计任务
-40 4:54p 🔵 PRD文件命名已符合标准化要求
-41 " 🔄 标准化了PRD文档命名规范
-42 5:14p 🔵 Agent数字员工原型定义框架建立
-43 5:19p 🔵 Agent Digital Employee Framework Specification
-44 5:23p 🔵 Agent Digital Employee Architecture Defined
-45 5:41p 🔵 Discovered grill-me skill not available in curated Codex skills repository
-46 5:42p 🔵 Discovered grill-me skill path does not exist in mattpocock/skills repository
-47 6:17p ⚖️ Phase 1 策略调整：纳入多 Agent 协同编排与多终端支持
-48 6:37p 🔵 PRD-100 任务粒度冲突识别
-49 6:39p ✅ PRD-100/103 增加Issue与工作台模块联动设计
-50 6:44p 🔵 数字军团OS PRD-100系列文档体系建立完成
-51 " ⚖️ 多Agent协同编排移至Phase 2，Phase 1聚焦单任务闭环
-52 " ⚖️ Issue状态机驱动工作台模块联动架构
-53 " ⚖️ Wiki与Memory解耦设计，区分显性知识与执行经验
-54 6:45p ✅ PRD-100 引入Project为中心的核心概念模型
-55 6:46p 🔵 pm-agent完成PRD-100系列深度分析，识别三大优化方向
-56 6:48p ✅ PRD-100将Memory概念拆分为Project Memory和Personal Memory
-57 6:51p ✅ PRD术语一致性修正：强化Project为中心的表述
-58 6:53p ⚖️ Project Phase 1 P0 属性范围界定
-59 6:54p ⚖️ Project Phase 1 P0 属性范围最终确认与文档修正
-60 6:56p 🔵 数字军团OS模块架构确认
-61 6:58p ⚖️ Project Phase 1 P0 范围最终确认与二级需求矩阵建立
-62 7:07p 🔵 数字员工原型文档结构发现
 63 7:08p ✅ Updated digital employee template context loading mechanism
 64 7:09p 🔄 Standardized digital employee knowledge sources to Project Wiki
 65 7:33p ✅ PRD-100 Project P0 属性范围修正
 66 7:34p ✅ PRD-100 项目 P0 范围更新完成
+### May 15, 2026
+67 9:39a 🔵 Hermes Agent documented as Body component in digital legion architecture
+68 10:01a 🔵 ARD文档审查请求已启动
+69 10:08a 🔵 Architect Skills Investigation Initiated
+70 10:09a 🔵 Architect Skill Workflow and Quality Assessment
+71 10:13a 🔵 Architect Skill Invocation Methods in Hermes
+72 10:22a 🟣 Implemented Stitch Intelligent Interface with dual-mode operation
+73 10:23a 🔵 Stitch MCP server requires OAuth2 authentication
+74 10:25a 🔵 Google Cloud CLI not installed in development environment
+75 10:26a 🔵 Stitch integration blocked by missing Google Cloud SDK
+76 10:58a 🔵 Stitch MCP 配置调查启动
+77 11:00a 🔵 Stitch MCP configuration requirements explored
+78 11:01a 🔵 Stitch MCP configured and connected at Gemini level
+79 11:04a 🔵 Researching Stitch MCP configuration process
+81 11:07a 🔵 Stitch MCP 服务器配置状态
+82 " 🔵 Stitch MCP 扩展完整配置结构
+83 11:10a 🔵 Stitch MCP authentication requires OAuth2 via gcloud ADC
+85 11:15a 🔵 Architecture Gap Analysis for Phase 1 Requirements
+86 11:16a 🔵 Stitch MCP requires gcloud OAuth2 credentials despite authProviderType configuration
+87 " 🔵 Stitch MCP tools reject wait_for_previous parameter as invalid argument
+88 " ✅ Stitch MCP server renamed from stitch to stitch_corp in configuration
+89 11:19a 🔵 Stitch extension defaults to API Key authentication, requires explicit --auth-provider flag for OAuth2
+90 11:23a 🔵 Tool Discovery Request
+92 11:25a 🔵 Stitch MCP Configuration Research Initiated
+91 " 🔵 Digital Legion工具能力矩阵架构
+93 11:28a 🔵 Stitch MCP扩展配置已存在
+94 " 🔵 Stitch MCP需要OAuth2认证而非API Key
+95 11:30a 🔵 Stitch扩展认证配置存在不一致
+96 11:33a 🔵 Shell命令替换被安全策略阻止
+97 " ✅ Stitch扩展切换至OAuth2/ADC认证配置
+98 11:35a 🔵 确认google_credentials为正确的ADC认证提供者类型
+99 11:36a ✅ Stitch扩展配置完成并验证
+100 1:39p 🔵 Stitch MCP 项目列表工具发现
+101 1:40p 🟣 Stitch project created
+102 1:46p 🔵 原型设计请求
+103 " 🔵 PRD文档定位与产品愿景研究
+104 1:47p 🔵 原型设计准备与Stitch工具定位
+105 1:57p 🔵 设计系统风格研究：Atmospheric Glass玻璃态设计
+106 1:59p 🔵 设计系统风格研究：Paws & Paths现代企业友好风格
+107 2:29p 🟣 Stitch Prototype Review
+108 2:30p 🔵 Stitch Project Contains No Screens
+109 2:31p 🔵 Stitch Generated Five Prototype Screens for Digital Legion OS
+110 2:40p 🟣 仪表盘优化初始版本生成
+111 2:54p 🟣 User work homepage redesigned with Digital Legion OS design system
+S2 User work homepage redesigned with Digital Legion OS design system (May 15 at 2:54 PM)
+112 3:08p ✅ 产品需求说明转述
+113 3:22p 🔵 Figma 和原型设计技能搜索
+114 3:23p 🔵 设计工具技能搜索完成
 </claude-mem-context>

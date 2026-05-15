@@ -44,39 +44,45 @@
   },
   "hotPaths": [
     {
+      "path": "docs/prd/PRD-100-数字军团OS总体产品需求文档-v1.0.md",
+      "accessCount": 6,
+      "lastAccessed": 1778828922894,
+      "type": "file"
+    },
+    {
       "path": "docs/issues/README.md",
       "accessCount": 3,
       "lastAccessed": 1778781398832,
       "type": "file"
     },
     {
-      "path": "docs/prd/PRD-102-数字员工实例与多终端运行中心-v1.0.md",
-      "accessCount": 1,
-      "lastAccessed": 1778776906920,
+      "path": "docs/prd/PRD-103-角色工作台与Issue协作中心-v1.0.md",
+      "accessCount": 3,
+      "lastAccessed": 1778827108975,
       "type": "file"
     },
     {
       "path": "docs/prd/PRD-101-数字员工定义中心-v1.0.md",
-      "accessCount": 1,
-      "lastAccessed": 1778776906968,
+      "accessCount": 3,
+      "lastAccessed": 1778828904531,
       "type": "file"
     },
     {
-      "path": "docs/prd/PRD-103-角色工作台与Issue协作中心-v1.0.md",
-      "accessCount": 1,
-      "lastAccessed": 1778776907020,
-      "type": "file"
-    },
-    {
-      "path": "docs/prd/PRD-100-数字军团OS总体产品需求文档-v1.0.md",
-      "accessCount": 1,
-      "lastAccessed": 1778776908465,
+      "path": "docs/prd/PRD-102-数字员工实例与多终端运行中心-v1.0.md",
+      "accessCount": 2,
+      "lastAccessed": 1778828904306,
       "type": "file"
     },
     {
       "path": "docs/prd/PRD-105-Wiki-Memory-Workflow与组织治理中心-v1.0.md",
-      "accessCount": 1,
-      "lastAccessed": 1778776915059,
+      "accessCount": 2,
+      "lastAccessed": 1778828922667,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-001-核心抽象模型：Body、Soul 与实例.md",
+      "accessCount": 2,
+      "lastAccessed": 1778828922816,
       "type": "file"
     },
     {
@@ -113,6 +119,144 @@
       "path": "docs/issues/M0/ISSUE-M0-12.md",
       "accessCount": 1,
       "lastAccessed": 1778781978384,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-003-工作台模块动态生成机制.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810505491,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-004-Project 定位与生命周期.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810505720,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-002-Soul 压缩包结构与自包含性.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810505770,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-005-Personal Memory 分层与生命周期.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810505878,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-006-能力模型分层：Skill、Tool、MCP、Function Calling.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810505924,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-007-Tool 到工作台模块的映射机制.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810519551,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-009-运行时上下文动态组装.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810519655,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-013-跨状态机联动规则.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810519708,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-010-Issue 执行前规划检查.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810519760,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-014-平台服务拆分策略.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810520236,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-011-Issue 完成后的双层沉淀策略.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810520274,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-012-Soul 更新三级策略.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810520327,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-008-知识三层模型：Wiki、Project Memory、Personal Memory.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810520350,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-018-部署形态与多组织预留.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810533446,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-022-审批流策略.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810533490,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-017-Issue 创建流程与 structured brief 生成.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810533710,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-019-Soul 原型组织内共享机制.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810533725,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-015-Body-Platform 通信架构.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810533824,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-016-断连恢复与超时策略.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810534043,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-020-项目创建时的数字员工初始化.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810534080,
+      "type": "file"
+    },
+    {
+      "path": "docs/architecture/ADR-021-权限模型.md",
+      "accessCount": 1,
+      "lastAccessed": 1778810534096,
+      "type": "file"
+    },
+    {
+      "path": "docs/design/DESIGN.md",
+      "accessCount": 1,
+      "lastAccessed": 1778824810754,
+      "type": "file"
+    },
+    {
+      "path": "DESIGN.md",
+      "accessCount": 1,
+      "lastAccessed": 1778825461353,
       "type": "file"
     }
   ],

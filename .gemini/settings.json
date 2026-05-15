@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "stitch_corp": {
+      "httpUrl": "https://stitch.googleapis.com/mcp",
+      "authProviderType": "google_credentials"
+    }
+  }
+}
