@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778764071201,
+  "projectRoot": "/Users/jinmo/workspace/hitevision-digital-legion",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs"
+    ],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 0,
+      "lastAccessed": 1778764071129,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "docs/issues/README.md",
+      "accessCount": 3,
+      "lastAccessed": 1778781398832,
+      "type": "file"
+    },
+    {
+      "path": "docs/prd/PRD-102-数字员工实例与多终端运行中心-v1.0.md",
+      "accessCount": 1,
+      "lastAccessed": 1778776906920,
+      "type": "file"
+    },
+    {
+      "path": "docs/prd/PRD-101-数字员工定义中心-v1.0.md",
+      "accessCount": 1,
+      "lastAccessed": 1778776906968,
+      "type": "file"
+    },
+    {
+      "path": "docs/prd/PRD-103-角色工作台与Issue协作中心-v1.0.md",
+      "accessCount": 1,
+      "lastAccessed": 1778776907020,
+      "type": "file"
+    },
+    {
+      "path": "docs/prd/PRD-100-数字军团OS总体产品需求文档-v1.0.md",
+      "accessCount": 1,
+      "lastAccessed": 1778776908465,
+      "type": "file"
+    },
+    {
+      "path": "docs/prd/PRD-105-Wiki-Memory-Workflow与组织治理中心-v1.0.md",
+      "accessCount": 1,
+      "lastAccessed": 1778776915059,
+      "type": "file"
+    },
+    {
+      "path": "docs/prd/PRD-104-多数字员工协同编排中心-v1.0.md",
+      "accessCount": 1,
+      "lastAccessed": 1778776915201,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/PRD-Requirements-Overview.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781353401,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M0/ISSUE-M0-01.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978124,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M1/ISSUE-M1-05.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978193,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M1/ISSUE-M1-21.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978316,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M0/ISSUE-M0-12.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978384,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

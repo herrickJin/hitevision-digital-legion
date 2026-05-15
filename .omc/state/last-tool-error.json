@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cat > /tmp/gen-issues.sh << 'SCRIPT'\\n#!/bin/bash\\nset -e\\n\\n# M0 Issues\\ndeclare -A M0_ISSUES\\nM0_ISSUES[\\\"M0-01\\\"]=\\\"# ISSUE-M0-01: Project 对象 P0 字段定义\\n\\n## Parent\\nPRD-100 §5.3, §13.2.4...",
+  "error": "Exit code 2\n/tmp/gen-issues.sh: line 5: declare: -A: invalid option\ndeclare: usage: declare [-afFirtx] [-p] [name[=value] ...]",
+  "timestamp": "2026-05-14T17:01:05.522Z",
+  "retry_count": 1
+}
