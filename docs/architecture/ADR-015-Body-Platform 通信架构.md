@@ -6,31 +6,40 @@ Hermes Agent（Body）运行在用户侧（PC/Linux/容器），平台运行服�
 
 ## 决策
 
-**WebSocket 长连接 + 事件驱动，平台作为中间层解耦 Body 和前端。**
+**WebSocket 长连接 + 事件驱动，Sidecar 作为 Body 侧的通信代理，平台作为中间层解耦 Sidecar 和前端。**
 
-### 两段通信架构
+引入 Sidecar（ADR-025）后，通信架构变为三段：
 
 ```
-Body ←──WebSocket长连接──→ 平台运行服务 ←──WebSocket/SSE──→ 前端
+Agent子进程 ←──stdin/stdout NDJSON──→ Sidecar ←──WebSocket长连接──→ 平台运行服务 ←──WebSocket/SSE──→ 前端
 ```
 
-### 段一：Body ↔ 平台运行服务（WebSocket 长连接）
+### 三段通信架构
+
+**段零：Agent ↔ Sidecar（stdin/stdout NDJSON）**（详见 ADR-025）
+
+- Sidecar 以父进程方式管理 Agent 子进程
+- Agent 通过 stdout 输出事件（heartbeat、tool_call、tool_result、artifact、status、log）
+- Sidecar 通过 stdin 下发指令（task、cancel、config_update）
+- 二进制/大文件走本地目录，不走 stdout
+
+**段一：Sidecar ↔ 平台运行服务（WebSocket 长连接）**
 
 **连接生命周期：**
-- Body 启动时与平台运行服务建立 WebSocket
+- Sidecar 启动时与平台运行服务建立 WebSocket（携带 instance_id + instance_token 认证，ADR-027）
 - 连接期间维持心跳（每 30 秒一次 ping）
-- 连接断开时 Body 自动重连
+- 连接断开时 Sidecar 自动重连
 
-**平台 → Body（下行）：**
+**平台 → Sidecar（下行）：**
 - 上下文注入（Soul 配置 + Project Objective + 权限边界）
 - Issue 执行指令
 - 停止/更新指令
 - 心跳响应
 
-**Body → 平台（上行）：**
+**Sidecar → 平台（上行）：**
 - 心跳 ping
-- 执行事件上报（工具调用、阶段产物、状态变更）
-- 终端输出流（stdout/stderr 实时推送）
+- 执行事件上报（从 Agent stdout 收集的 tool_call、tool_result 等）
+- 终端输出流（Agent stdout 中的 log 事件，Sidecar 流式转发）
 - 结构化操作事件（文件操作、浏览操作）
 - 产物发布
 
@@ -51,9 +60,10 @@ Body ←──WebSocket长连接──→ 平台运行服务 ←──WebSocket/
 
 ### 关键设计点
 
-1. **Body 不直接和前端通信**——平台运行服务作为中间层，解耦两端
-2. **终端输出走 WebSocket**——Body 的 terminal stdout/stderr 通过 WebSocket 流式推送到平台，平台透传给前端，前端用终端组件渲染
-3. **结构化事件走 WebSocket**——工具调用、文件操作等结构化事件同样通过 WebSocket 上报
+1. **Agent 不直接和平台通信**——Sidecar 作为通信代理，Agent 只需实现 stdin/stdout NDJSON 协议（ADR-025）
+2. **Sidecar 不直接和前端通信**——平台运行服务作为中间层，解耦两端
+3. **终端输出走 Sidecar → 平台 → 前端**——Agent stdout 中的 log 事件由 Sidecar 收集，通过 WebSocket 流式推送到平台，平台透传给前端，前端用终端组件渲染
+4. **结构化事件走 Sidecar → 平台 → 前端**——Agent stdout 中的 tool_call 等结构化事件同样通过 Sidecar 收集上报
 
 ## 被拒绝的替代方案
 
@@ -65,19 +75,22 @@ Body ←──WebSocket长连接──→ 平台运行服务 ←──WebSocket/
 
 ### 正面
 
-- 实时感知 Body 在线状态（心跳机制）
-- 用户可实时观看 Body 操作过程（终端流 + 结构化事件）
+- 实时感知 Sidecar 在线状态（心跳机制），间接感知 Agent 状态
+- 用户可实时观看 Agent 操作过程（终端流 + 结构化事件，经 Sidecar 透传）
 - 平台作为中间层统一管理权限、审计和事件分发
-- Body 和前端解耦，各自独立演进
+- Sidecar、平台、前端三层解耦，各自独立演进
 
 ### 负面
 
 - WebSocket 长连接增加平台运行服务的连接管理复杂度
 - 需要处理断连恢复和状态同步（见 ADR-016）
 - 终端输出流的带宽消耗需要控制（考虑限流和截断）
+- 三段通信增加了端到端延迟（Agent→Sidecar→平台→前端）
+- Sidecar 成为通信单点——Sidecar 崩溃则 Agent 和平台同时失联
 
 ## 复审条件
 
-- 当 Body 并发连接数超过单节点承载能力时（考虑负载均衡）
+- 当 Sidecar 并发连接数超过单节点承载能力时（考虑负载均衡）
 - 当终端输出流带宽成为瓶颈时
 - 当需要支持离线执行场景时
+- 当需要 Sidecar 高可用（主备切换）时
