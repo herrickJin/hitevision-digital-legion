@@ -44,6 +44,12 @@
   },
   "hotPaths": [
     {
+      "path": "docs/issues/README.md",
+      "accessCount": 3,
+      "lastAccessed": 1778781398832,
+      "type": "file"
+    },
+    {
       "path": "docs/prd/PRD-102-数字员工实例与多终端运行中心-v1.0.md",
       "accessCount": 1,
       "lastAccessed": 1778776906920,
@@ -77,6 +83,36 @@
       "path": "docs/prd/PRD-104-多数字员工协同编排中心-v1.0.md",
       "accessCount": 1,
       "lastAccessed": 1778776915201,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/PRD-Requirements-Overview.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781353401,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M0/ISSUE-M0-01.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978124,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M1/ISSUE-M1-05.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978193,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M1/ISSUE-M1-21.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978316,
+      "type": "file"
+    },
+    {
+      "path": "docs/issues/M0/ISSUE-M0-12.md",
+      "accessCount": 1,
+      "lastAccessed": 1778781978384,
       "type": "file"
     }
   ],
