@@ -1,0 +1,11 @@
+.agents
+.claude
+.gemini
+.omc
+.hermes/**
+.spec-workflow/
+.tmp_docx/*
+.design/
+.playwright-mcp/*
+.tmp_docx/.DS_Store
+docs/design/
